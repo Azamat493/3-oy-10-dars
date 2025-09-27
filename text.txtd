@@ -1,0 +1,57 @@
+Object — bu key (kalit) va value (qiymat) juftliklaridan tashkil 
+topgan ma’lumotlar tuzilmasi, va u bilan bog‘liq funksiyalarni saqlashi mumkin.
+this — object ichidagi o‘sha objectni o‘zi bildiradi.
+this orqali objectning o‘z propertiesiga murojaat qilamiz.
+1) Literal usul
+let car = {
+  brand: "Toyota",
+  color: "red"
+};
+2) Constructor usul
+let car = new Object();
+car.brand = "BMW";
+car.color = "black";
+
+Key — objectdagi nom (property nomi)
+Value — keyga tegishli ma’lumot yoki funksiya
+
+Dot notation
+console.log(person.name); // Azamat
+
+Bracket notation
+console.log(person["age"]); // 29
+Bracket notation key nomi o‘zgaruvchida bo‘lsa ishlatiladi.
+
+Object ichida function ishlatilsa, unga method deyiladi.
+Object.create() — yangi object yaratadi va unga prototype sifatida 
+boshqa objectni bog‘laydi.
+
+let personProto = {
+  greet: function() {
+    console.log("Hello " + this.name);
+  }
+};
+
+let student = Object.create(personProto);
+student.name = "Azamat";
+student.greet(); // Hello Azamat
+
+Object.defineProperty() — objectga yangi property qo‘shish va uning xususiyatlarini 
+sozlash imkonini beradi.
+
+let person = {};
+Object.defineProperty(person, "name", {
+  value: "Azamat",
+  writable: true,        // qiymat o‘zgartirilishi mumkin
+  enumerable: true,      // for...in orqali ko‘rinadi
+  configurable: true     // property o‘chirilishi mumkin
+});
+
+console.log(person.name); // Azamat
+
+configurable — property o‘chirlishi yoki xususiyatlari o‘zgartirilishi mumkinligini 
+bildiradi.
+enumerable — property for...in loop yoki Object.keys() bilan ko‘rinishini bildiradi.
+
+Object.prototype — barcha objectlarning ota objecti, undagi property va metodlar har 
+bir objectga meros sifatida o‘tadi.
